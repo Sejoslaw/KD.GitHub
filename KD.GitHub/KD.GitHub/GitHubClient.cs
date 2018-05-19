@@ -1,5 +1,6 @@
 ﻿using KD.GitHub.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace KD.GitHub
 {
@@ -8,6 +9,16 @@ namespace KD.GitHub
     /// </summary>
     public class GitHubClient
     {
+        /// <summary>
+        /// Additional parameters / arguments added to URL.
+        /// </summary>
+        public IDictionary<string, string> Parameters { get; }
+
+        public GitHubClient()
+        {
+            this.Parameters = new Dictionary<string, string>();
+        }
+
         /// <summary>
         /// Retrieves basic information about specified User.
         /// </summary>
@@ -27,7 +38,7 @@ namespace KD.GitHub
         {
             var followers = new List<GitHubUser>();
 
-            JsonParser.ParseCollection(user.FollowersUrl, (token) =>
+            JsonParser.ParseCollection(user.FollowersUrl + this.ParseUrlArguments(), (token) =>
             {
                 string json = token.ToString();
                 GitHubUser follower = new GitHubUser(json);
@@ -46,7 +57,7 @@ namespace KD.GitHub
         {
             var organizations = new List<GitHubOrganization>();
 
-            JsonParser.ParseCollection(user.OrganizationsUrl, (token) =>
+            JsonParser.ParseCollection(user.OrganizationsUrl + this.ParseUrlArguments(), (token) =>
             {
                 string json = token.ToString();
                 GitHubOrganization follower = new GitHubOrganization(json);
@@ -66,7 +77,7 @@ namespace KD.GitHub
         {
             var subs = new List<GitHubRepository>();
 
-            JsonParser.ParseCollection(user.SubscriptionsUrl, (token) =>
+            JsonParser.ParseCollection(user.SubscriptionsUrl + this.ParseUrlArguments(), (token) =>
             {
                 string json = token.ToString();
                 GitHubRepository repo = new GitHubRepository(json);
@@ -86,7 +97,7 @@ namespace KD.GitHub
         {
             var subs = new List<GitHubRepository>();
 
-            JsonParser.ParseCollection(user.ReposUrl, (token) =>
+            JsonParser.ParseCollection(user.ReposUrl + this.ParseUrlArguments(), (token) =>
             {
                 string json = token.ToString();
                 GitHubRepository repo = new GitHubRepository(json);
@@ -95,6 +106,18 @@ namespace KD.GitHub
             });
 
             return subs;
+        }
+
+        private string ParseUrlArguments()
+        {
+            string urlArgs = "?";
+
+            this.Parameters.ToList().ForEach((pair) =>
+            {
+                urlArgs += $"{ pair.Key }={ pair.Value }&";
+            });
+
+            return urlArgs;
         }
     }
 }
