@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,6 +18,17 @@ namespace KD.GitHub
                 string key = property.Name;
                 string value = property.Value.ToObject<string>();
                 data.Add(key, value);
+            });
+        }
+
+        public static void ParseCollection(string url, Action<JToken> HandleElement)
+        {
+            string httpResponse = RequestSender.Get(url);
+
+            JArray array = JArray.Parse(httpResponse);
+            array.ToList().ForEach(token =>
+            {
+                HandleElement?.Invoke(token);
             });
         }
     }

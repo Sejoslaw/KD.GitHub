@@ -6,7 +6,7 @@ namespace KD.GitHub
     /// <summary>
     /// Contains basic data for each GitHub element.
     /// </summary>
-    public class GitHubElements
+    public class GitHubElement
     {
         public string Login { get => this.TryGetDataValue("login"); }
         public string Id { get => this.TryGetDataValue("id"); }
@@ -37,10 +37,12 @@ namespace KD.GitHub
         /// </summary>
         protected string HttpResponse { get; set; }
 
-        public GitHubElements(string httpResponse)
+        public GitHubElement(string httpResponse)
         {
             this.HttpResponse = httpResponse;
             this.Data = new Dictionary<string, string>();
+
+            this.ParseInformations();
         }
 
         protected string TryGetDataValue(string key)
@@ -53,6 +55,11 @@ namespace KD.GitHub
             {
                 return null;
             }
+        }
+
+        private void ParseInformations()
+        {
+            JsonParser.FillData(this.Data, this.HttpResponse);
         }
     }
 }

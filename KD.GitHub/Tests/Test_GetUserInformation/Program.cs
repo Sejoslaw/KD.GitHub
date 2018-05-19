@@ -10,6 +10,7 @@ namespace Test_GetUserInformation
             GitHubClient client = new GitHubClient();
             GitHubUser user = client.GetUserInformation("Sejoslaw");
             IEnumerable<GitHubUser> followers = user.GetFollowers();
+            IEnumerable<GitHubOrganization> organizations = user.GetOrganizations();
             ;
         }
     }

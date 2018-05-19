@@ -1,13 +1,11 @@
-﻿using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace KD.GitHub
 {
     /// <summary>
     /// Contains information about GitHub user.
     /// </summary>
-    public sealed class GitHubUser : GitHubElements
+    public sealed class GitHubUser : GitHubElement
     {
         public string GravatarId { get => this.TryGetDataValue("gravatar_id"); }
         public string FollowersUrl { get => this.TryGetDataValue("followers_url"); }
@@ -23,19 +21,20 @@ namespace KD.GitHub
 
         public GitHubUser(string httpResponse) : base(httpResponse)
         {
-            this.ParseUserInformation();
         }
 
+        /// <summary>
+        /// Returns collection of users who are following current user.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<GitHubUser> GetFollowers()
         {
-            string httpResponse = RequestSender.Get(this.FollowersUrl);
             var followers = new List<GitHubUser>();
 
-            JArray array = JArray.Parse(httpResponse);
-            array.ToList().ForEach(token =>
+            JsonParser.ParseCollection(this.FollowersUrl, (token) =>
             {
-                string followerJson = token.ToString();
-                GitHubUser follower = new GitHubUser(followerJson);
+                string json = token.ToString();
+                GitHubUser follower = new GitHubUser(json);
 
                 followers.Add(follower);
             });
@@ -43,9 +42,23 @@ namespace KD.GitHub
             return followers;
         }
 
-        private void ParseUserInformation()
+        /// <summary>
+        /// Returns collection of organizations to which the current user belongs.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<GitHubOrganization> GetOrganizations()
         {
-            JsonParser.FillData(this.Data, this.HttpResponse);
+            var organizations = new List<GitHubOrganization>();
+
+            JsonParser.ParseCollection(this.OrganizationsUrl, (token) =>
+            {
+                string json = token.ToString();
+                GitHubOrganization follower = new GitHubOrganization(json);
+
+                organizations.Add(follower);
+            });
+
+            return organizations;
         }
     }
 }
