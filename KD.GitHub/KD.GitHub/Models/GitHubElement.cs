@@ -34,7 +34,7 @@ namespace KD.GitHub.Models
         /// <summary>
         /// Contains data received from API.
         /// </summary>
-        protected IDictionary<string, string> Data { get; set; }
+        protected IDictionary<string, object> Data { get; set; }
         /// <summary>
         /// API response.
         /// </summary>
@@ -43,7 +43,7 @@ namespace KD.GitHub.Models
         public GitHubElement(string httpResponse)
         {
             this.HttpResponse = httpResponse;
-            this.Data = new Dictionary<string, string>();
+            this.Data = new Dictionary<string, object>();
 
             this.ParseInformations();
         }
@@ -52,7 +52,7 @@ namespace KD.GitHub.Models
         {
             try
             {
-                return this.Data[key];
+                return this.Data[key].ToString();
             }
             catch (Exception)
             {

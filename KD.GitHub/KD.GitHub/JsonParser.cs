@@ -10,13 +10,23 @@ namespace KD.GitHub
     /// </summary>
     internal static class JsonParser
     {
-        public static void FillData(IDictionary<string, string> data, string jsonString)
+        public static void FillData(IDictionary<string, object> data, string jsonString)
         {
             JObject json = JObject.Parse(jsonString);
             json.Properties().ToList().ForEach(property =>
             {
                 string key = property.Name;
-                string value = property.Value.ToObject<string>();
+                object value = "";
+
+                try
+                {
+                    value = property.Value.ToObject<string>();
+                }
+                catch (Exception)
+                {
+                    value = property.Value.ToObject<object>();
+                }
+
                 data.Add(key, value);
             });
         }
