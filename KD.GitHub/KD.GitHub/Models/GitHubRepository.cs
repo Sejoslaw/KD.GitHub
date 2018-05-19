@@ -46,7 +46,30 @@ namespace KD.GitHub.Models
         public string DeploymentsUrl { get => this.TryGetDataValue("deployments_url"); }
         public DateTime PushedAt { get => DateTime.Parse(this.TryGetDataValue("pushed_at")); }
         public string GitUrl { get => this.TryGetDataValue("git_url"); }
-
+        public string SshUrl { get => this.TryGetDataValue("ssh_url"); }
+        public string CloneUrl { get => this.TryGetDataValue("clone_url"); }
+        public string SvnUrl { get => this.TryGetDataValue("svn_url"); }
+        public string Homepage { get => this.TryGetDataValue("homepage"); }
+        public int Size { get => int.Parse(this.TryGetDataValue("size")); }
+        public int StargazersCount { get => int.Parse(this.TryGetDataValue("stargazers_count")); }
+        public int WatchersCount { get => int.Parse(this.TryGetDataValue("watchers_count")); }
+        public string Language { get => this.TryGetDataValue("language"); }
+        public bool HasIssues { get => bool.Parse(this.TryGetDataValue("has_issues")); }
+        public bool HasProjects { get => bool.Parse(this.TryGetDataValue("has_projects")); }
+        public bool HasDownloads { get => bool.Parse(this.TryGetDataValue("has_downloads")); }
+        public bool HasWiki { get => bool.Parse(this.TryGetDataValue("has_wiki")); }
+        public bool HasPages { get => bool.Parse(this.TryGetDataValue("has_pages")); }
+        public int ForksCount { get => int.Parse(this.TryGetDataValue("forks_count")); }
+        public string MirrorUrl { get => this.TryGetDataValue("mirror_url"); }
+        public bool IsArchived { get => bool.Parse(this.TryGetDataValue("archived")); }
+        public int OpenIssuesCount { get => int.Parse(this.TryGetDataValue("open_issues_count")); }
+        public GitHubLicense License { get => new GitHubLicense(this.TryGetDataValue("license")); }
+        public int Forks { get => int.Parse(this.TryGetDataValue("forks")); }
+        public int OpenIssues { get => int.Parse(this.TryGetDataValue("open_issues")); }
+        public int Watchers { get => int.Parse(this.TryGetDataValue("watchers")); }
+        public string DefaultBranch { get => this.TryGetDataValue("default_branch"); }
+        public int NetworkCount { get => int.Parse(this.TryGetDataValue("network_count")); }
+        public int SubscribersCount { get => int.Parse(this.TryGetDataValue("subscribers_count")); }
 
         public GitHubRepository(string httpResponse) : base(httpResponse)
         {
