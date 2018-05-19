@@ -1,4 +1,5 @@
 ﻿using KD.GitHub;
+using System.Collections.Generic;
 
 namespace Test_GetUserInformation
 {
@@ -8,6 +9,7 @@ namespace Test_GetUserInformation
         {
             GitHubClient client = new GitHubClient();
             GitHubUser user = client.GetUserInformation("Sejoslaw");
+            IEnumerable<GitHubUser> followers = user.GetFollowers();
             ;
         }
     }
