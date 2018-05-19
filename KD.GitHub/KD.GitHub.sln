@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KD.GitHub", "KD.GitHub\KD.GitHub.csproj", "{83BD8539-460F-4960-A7FC-E22D2F783D3D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0FCD0A3F-74C7-4C35-B1EE-F5FD64839D29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_GetUserInformation", "Tests\Test_GetUserInformation\Test_GetUserInformation.csproj", "{AE68BD49-159B-4A7B-A13F-F6F6567334A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83BD8539-460F-4960-A7FC-E22D2F783D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83BD8539-460F-4960-A7FC-E22D2F783D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83BD8539-460F-4960-A7FC-E22D2F783D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83BD8539-460F-4960-A7FC-E22D2F783D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE68BD49-159B-4A7B-A13F-F6F6567334A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE68BD49-159B-4A7B-A13F-F6F6567334A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE68BD49-159B-4A7B-A13F-F6F6567334A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE68BD49-159B-4A7B-A13F-F6F6567334A4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AE68BD49-159B-4A7B-A13F-F6F6567334A4} = {0FCD0A3F-74C7-4C35-B1EE-F5FD64839D29}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2455645A-6068-4455-B0C4-53D6516E29E3}
+	EndGlobalSection
+EndGlobal
