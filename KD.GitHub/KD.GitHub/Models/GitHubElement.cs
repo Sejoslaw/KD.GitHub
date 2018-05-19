@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KD.GitHub
+namespace KD.GitHub.Models
 {
     /// <summary>
     /// Contains basic data for each GitHub element.
@@ -27,6 +27,9 @@ namespace KD.GitHub
         public DateTime CreatingAt { get => DateTime.Parse(this.TryGetDataValue("created_at")); }
         public DateTime UpdatedAt { get => DateTime.Parse(this.TryGetDataValue("updated_at")); }
         public string Type { get => this.TryGetDataValue("type"); }
+        public string Description { get => this.TryGetDataValue("description"); }
+        public string HooksUrl { get => this.TryGetDataValue("hooks_url"); }
+        public string IssuesUrl { get => this.TryGetDataValue("issues_url"); }
 
         /// <summary>
         /// Contains data received from API.
